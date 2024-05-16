@@ -10,7 +10,7 @@ class Produit extends Model
     use HasFactory;
     protected $fillable = ['ref', 'nom','prix','categorie'];
 
-    public function commande(){
+    public function commandes(){
         return $this->belongsToMany(Commande::class)->withPivot('QteCmd');
     }
 }

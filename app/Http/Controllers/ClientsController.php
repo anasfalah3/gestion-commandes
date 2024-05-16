@@ -69,7 +69,20 @@ class ClientsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::find($id);
+        $request->validate(
+            [
+                'nom' => 'required|alpha',
+                'prenom' => 'required|alpha',
+                'sexe' => 'required|in:M,F',
+                'tel' => 'required',
+                'email' => 'required|email',
+                'fonction' => 'required',
+            ]
+        );
+        $client->update($request->all());
+
+        return redirect()->route('clients.index')->with('success', 'Client bien modifié');
     }
 
     /**

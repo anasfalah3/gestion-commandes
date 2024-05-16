@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 
 class CommandesController extends Controller
@@ -11,7 +13,8 @@ class CommandesController extends Controller
      */
     public function index()
     {
-        //
+        $commandes = Commande::all();
+        return view("commandes.index", compact("commandes"));
     }
 
     /**
@@ -19,7 +22,8 @@ class CommandesController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view("commandes.create", compact("clients"));
     }
 
     /**
@@ -27,7 +31,21 @@ class CommandesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                "dateCmd" => "required|date",
+                "client_id" => "required|exists:clients,id",
+            ]
+        );
+        Commande::create(
+            [
+                "dateCmd" =>  $request->dateCmd,
+                "etatCmd" => "En Cours",
+                "client_id" =>  $request->client_id,
+            ]
+        );
+
+        return redirect()->route("commandes.index")->with("success", "commande bien ajoutée");
     }
 
     /**
@@ -35,7 +53,8 @@ class CommandesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $commande = Commande::find($id);
+        return view("commandes.show", compact("commande"));
     }
 
     /**
@@ -43,7 +62,9 @@ class CommandesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $commande = Commande::find($id);
+        $clients = Client::all();
+        return view("commandes.edit", compact("commande","clients"));
     }
 
     /**
@@ -51,7 +72,17 @@ class CommandesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $commande = Commande::find($id);
+        $request->validate(
+            [
+                "dateCmd" => "required|date",
+                "etatCmd" => "required|in:En Cours,Refusé,Validé",
+                "client_id" => "required|exists:clients,id",
+            ]
+        );
+        $commande->update($request->all());
+
+        return redirect()->route("commandes.index")->with("success", "commande bien modifié");
     }
 
     /**
@@ -59,6 +90,8 @@ class CommandesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $commande = Commande::find($id);
+        $commande->delete();
+        return redirect()->route("commandes.index")->with("success", "commande bien supprimée");
     }
 }

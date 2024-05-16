@@ -1,44 +1,76 @@
 @extends('master')
-@section('title','clients')
-@section('heading', 'Client : ' . $client->nom . ' ' .$client->prenom . ' Details')
+@section('title','client')
 @section('content')
-<div class="column">
-      <h2><span>Informations : </span></h2>
-
-      <table class="table table-bordered">
-            <thead>
-                  <tr>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Sexe</th>
-                        <th>Telephone</th>
-                        <th>Email</th>
-                        <th>Fonction</th>
-                        <th>created at</th>
-                        <th>updated at</th>
-                  </tr>
-            </thead>
-            <tbody>
-                  <tr>
-                        <td>{{$client->nom}}</td>
-                        <td>{{$client->prenom}}</td>
-                        <td>{{$client->sexe}}</td>
-                        <td>{{$client->tel}}</td>
-                        <td>{{$client->email}}</td>
-                        <td>{{$client->fonction}}</td>
-                        <td>{{$client->created_at}}</td>
-                        <td>{{$client->updated_at}}</td>
-                        
-                  </tr>
-            </tbody>
-      </table>
+<div class="row">
+      <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <h5 class="card-title fw-semibold mb-4">Informations : {{$client->nom . " ". $client->prenom}}</h5>
+                        </div>
+                        <div class="table-responsive">
+                              <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                          <tr>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">ID</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">nom</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Prenom</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Sexe</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Telephone</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Email</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Fonction</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-0">Created at</h6>
+                                                </th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          <tr class="border-top">
+                                                <td class="border-bottom-0">
+                                                      <p class="fw-semibold mb-0">{{$client->id}}</p>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->nom}}</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->prenom}}</>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->sexe}}</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->tel}}</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->email}}</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->fonction}}</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                      <h6 class="fw-semibold mb-1">{{$client->created_at}}</h6>
+                                                </td>
+                                          </tr>
+                                    </tbody>
+                              </table>
+                        </div>
+                  </div>
+            </div>
+      </div>
 </div>
-@endsection
-@section('back')
-<h3>
-      <a class="details" href="{{route('clients.index')}}" title="details" data-toggle="tooltip">
-            <i class="material-icons">&#xE5C4;</i>
-            Back
-      </a>
-</h3>
+
 @endsection
