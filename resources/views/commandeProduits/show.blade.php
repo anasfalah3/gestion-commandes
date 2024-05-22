@@ -1,6 +1,12 @@
 @extends('master')
 @section('title','client')
 @section('content')
+<a href="{{route('commandeProduits.index')}}" class="mb-3" style="font-size: xx-large; cursor:pointer;">
+      <span>
+            <i class="ti ti-arrow-left"></i>
+            Back
+      </span>
+</a>
 <div class="row">
       <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card w-100">

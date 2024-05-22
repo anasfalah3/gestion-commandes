@@ -2,7 +2,12 @@
 @section('title','commande')
 @section('content')
 
-
+<a href="{{route('commandes.index')}}" class="mb-3" style="font-size: xx-large; cursor:pointer;">
+    <span>
+        <i class="ti ti-arrow-left"></i>
+        Back
+    </span>
+</a>
 <div class="container-fluid">
     <div class="container-fluid">
         <div class="card">
